@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyApp</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="MyApp" ng-controller="MyController">
+		<form ng-submit="login(username,password);">
+			<input  placeholder="username" type="text" ng-model="username">
+			<input placeholder="password" type="password" ng-model="password">
+			<button type="submit">Login</button>
+		</form>
+		
+	</div>
+</body>
+
+<script type="text/javascript">
+	var app = angular.module("MyApp",[]);
+
+	app.controller("MyController",function($scope, MyService){
+		console.log("controller loaded");
+
+		$scope.login = function(username, password){
+			MyService.login(username,password).then(function(response){
+				alert(response.data.msg);
+			}, function(error){
+				alert(error.data.msg);
+			});
+		}
+	});
+
+	// =====================================================
+
+	app.service("MyService", function($http, $q){
+		console.log("service loaded");
+		this.login = function(username,password){
+			var defered = $q.defer();
+
+			var data = {};
+			data.username = username;
+			data.password  = password;
+
+			$http.post("/homes",data).then(function(response){
+				defered.resolve(response);
+			}, function(error){
+				defered.reject(error);
+			});
+
+			return defered.promise;
+		}
+	});
+
+
+</script>
+</html>
