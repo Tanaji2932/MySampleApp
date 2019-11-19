@@ -3,13 +3,26 @@
 <head>
 	<title>MyApp</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div ng-app="MyApp" ng-controller="MyController">
-		<form ng-submit="login(username,password);">
-			<input  placeholder="username" type="text" ng-model="username">
-			<input placeholder="password" type="password" ng-model="password">
-			<button type="submit">Login</button>
+		<form class="container" ng-submit="login(username,password);">
+
+			<div>
+				<div class="col-xs-12">
+					<input  class="form-control" placeholder="username" type="text" ng-model="username">
+				</div>
+
+				<div class="col-xs-12">
+					<input class="form-control" placeholder="password" type="password" ng-model="password">
+				</div>
+				<div class="col-xs-12">
+					<button class="form-control btn-success" type="submit">Login</button>
+				</div>
+			</div>
 		</form>
 		
 	</div>
